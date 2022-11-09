@@ -1,0 +1,11 @@
+.User_info {
+    display: flex;
+    width: 100%;
+}
+
+h4 {
+    margin: 0.3rem;
+}
+p {
+    margin: 0.3rem;
+}
