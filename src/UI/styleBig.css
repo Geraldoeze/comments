@@ -1,0 +1,36 @@
+
+.btn-bg-select {
+    background-color: var(--color-very-light-gray);
+    display: flex;
+    flex-direction: column;
+    width: 2.2rem;
+    height: 6.2rem;
+    border-radius: 5px;
+}
+
+
+
+ h3 {
+    color: var(--color-moderate-blue);
+    text-align: center;
+    font-size: large;
+    margin: 0;
+
+    font-family: 'Rubik' sans-serif;
+}
+
+
+.btn-bg-plus {
+    height: 0.4rem;
+    width: 2rem;
+    text-align: center;
+    cursor: pointer;
+    color: rgb(165, 157, 214);
+}
+
+
+
+.btn-bg-plus:hover {
+    color: var(--color-moderate-blue);
+    
+}

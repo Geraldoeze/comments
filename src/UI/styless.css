@@ -8,6 +8,8 @@
 /* Heading style */
 .heading {
     display: flex;
+    margin: 1rem 0;
+    width: 100%;
 }
 .heading_name {
     margin: 0 0.5rem;
@@ -26,45 +28,106 @@ img {
     height: 30px;
 }
 
+.creator-span {
+    background-color: var(--color-moderate-blue);
+    width: 2.5rem;
+    color: var(--color-white);
+    text-align: center;
+    padding: 4px;
+    border-radius: 2px;
+    font-weight: 500;
+}
+
 /* Button */
+
+
+h3 {
+    color: var(--color-moderate-blue);
+    text-align: center;
+    font-size: large;
+    margin: 0;
+    align-self:center;
+    font-family: 'Rubik' sans-serif;
+}
+
 .btn {
     display: flex;
+    justify-content: space-between;
     margin: 1.4rem 0;
     margin-bottom: 0.2rem;
     align-items: center;
+    width: 100%;
     
-    background-color: darkgrey;
 }
 .btn-select {
-    background-color: var(--color-light-grayish-blue);
+    background-color: var(--color-very-light-gray);
     display: flex;
-    width: 29%;
+    width: 6.2rem;
     height: 2rem;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .btn-select button {
     background: transparent;
     border: 0;
 }
 .btn-select p {
-    color: blue;
+    color: rgb(165, 157, 214);
     padding: 3px;
     margin: 2px;
     font-family: 'Rubik' sans-serif;
 }
+
+
+.btn-plus {
+    height: 0.8rem;
+    width: 0.8rem;
+    color: rgb(165, 157, 214);
+    cursor: pointer;
+}
+
+.btn-plus:hover {
+    color: var(--color-moderate-blue);
+    
+}
+
+
+/* Icons */
+
 .btn-icon {
-    margin: 0 1rem;
-    margin-left: auto;
-    width: 25%;
+    margin: 0;
+    width: 62%;
     display: flex;
     font-size: larger;
 }
-span {
-    color: blue;
-    padding: 4px;
+
+
+.img-reply {
+    display: flex;
+    justify-content: flex-end;
+    width: 70%;
+    margin-left: auto;
 }
-.img-icon {
-    width: 20px;
-    height: 20px;
-    margin: 5px;
+
+.img-delete {
+    display: flex;
+    width: 90%;
+    margin: 0 1rem;
+    justify-content: space-around;
+}
+
+.icons  {
+    cursor: pointer;
+}
+
+.del {
+    color: var(--color-soft-red);
+}
+.del:hover {
+    color: var(--color-pale-red);
+}
+.blu {
+    color: var(--color-moderate-blue);
+}
+.blu:hover {
+    color: var(--color-light-grayish-blue);
 }

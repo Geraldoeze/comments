@@ -2,7 +2,13 @@
     width: 85%;
     background-color: var(--color-white);
     margin: auto;
-    padding: 0.8rem;
+    padding: 1rem;
     border-radius: 10px;
     font-family: 'Rubik' sans-serif;
+}
+
+@media (min-width: 400px) {
+    /* .Comments {
+        display: none;
+    } */
 }

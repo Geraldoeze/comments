@@ -22,6 +22,7 @@ body {
   padding: 2rem 0;
   font-family: 'Rubik';
   box-sizing: border-box;
-  background-color: var(--color-very-light-gray);
+  /* background-color: var(--color-very-light-gray); */
+  background-color: grey;
 }
 
