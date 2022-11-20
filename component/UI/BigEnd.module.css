@@ -1,3 +1,10 @@
 .Bigend {
     display: flex;
+    height: 7rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    padding: 1rem 0;
 }

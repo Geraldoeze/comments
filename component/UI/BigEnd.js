@@ -8,7 +8,7 @@ const BigEnd = () => {
     return (
         <div className={classes.Bigend}>
             <ButtonBig />
-            <div>
+            <div className={classes.content}>
                 <Heading />
                 <Article />
             </div>

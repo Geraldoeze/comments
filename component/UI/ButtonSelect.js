@@ -7,7 +7,7 @@ const ButtonSelect = () => {
     return (
         <div className={classes.btn}>
           <Button />
-          <Icons creator={false}/>
+          <Icons creator={true}/>
         </div>
      );
 }

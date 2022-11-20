@@ -104,29 +104,35 @@
 .img_reply {
     display: flex;
     justify-content: flex-end;
-    width: 70%;
+    width: 100%;
     margin-left: auto;
 }
 
 .img_delete {
     display: flex;
     width: 90%;
+    
     margin: 0 1rem;
     justify-content: space-around;
 }
 
 .icons  {
     cursor: pointer;
+    
 }
 
 .del {
     color: var(--color-soft-red);
+    font-size: larger;
+    font-weight: 700;
 }
 .del:hover {
     color: var(--color-pale-red);
 }
 .blu {
     color: var(--color-moderate-blue);
+    font-size: larger;
+    font-weight: 700;
 }
 .blu:hover {
     color: var(--color-light-grayish-blue);
