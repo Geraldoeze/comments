@@ -1,40 +1,27 @@
 {
-  "name": "my-new-app",
-  "version": "0.1.0",
+  "name": "my-tailwind",
   "private": true,
-  "dependencies": {
-    "@fontsource/rubik": "^4.5.11",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.4.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "mongodb": "^4.10.0",
+    "next": "^12.1.0",
+    "primeicons": "^5.0.0",
+    "primereact": "^7.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.6.0",
+    "react-transition-group": "^4.4.2"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "eslint": "8.9.0",
+    "eslint-config-next": "12.1.0",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.23"
   }
 }
