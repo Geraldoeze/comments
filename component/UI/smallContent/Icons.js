@@ -1,6 +1,6 @@
 
-import {TiArrowBack} from 'react-icons/ti';
-import {MdDelete, MdEdit} from 'react-icons/md'
+
+
 import classes from './styless.module.css'
 import Image from 'next/dist/client/image';
 

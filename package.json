@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/rubik": "^4.5.11",
     "mongodb": "^4.10.0",
     "next": "^12.1.0",
     "primeicons": "^5.0.0",

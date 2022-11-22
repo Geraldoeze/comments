@@ -1,6 +1,6 @@
-import Article from "./Article";
+import Article from "../smallContent/Article";
 import ButtonBig from "./ButtonBig";
-import Heading from "./Heading";
+import BigHeading from '../BigContent/BigHeading'
 import classes from './BigEnd.module.css'
 
 
@@ -9,7 +9,7 @@ const BigEnd = () => {
         <div className={classes.Bigend}>
             <ButtonBig />
             <div className={classes.content}>
-                <Heading />
+                <BigHeading />
                 <Article />
             </div>
         </div>

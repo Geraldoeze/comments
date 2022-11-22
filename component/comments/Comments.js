@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 
-import Article from "../UI/Article";
-import BigEnd from "../UI/BigEnd";
-import ButtonBig from "../UI/ButtonBig";
-import ButtonSelect from "../UI/ButtonSelect";
-import Heading from "../UI/Heading";
+import Article from "../UI/smallContent/Article";
+import BigEnd from "../UI/BigContent/BigEnd";
+import ButtonBig from "../UI/BigContent/ButtonBig";
+import ButtonSelect from "../UI/smallContent/ButtonSelect";
+import Heading from "../UI/smallContent/Heading";
 import classes from './Comments.module.css'
 
 

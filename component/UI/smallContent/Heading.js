@@ -8,7 +8,7 @@ const Heading = ({creator}) => {
         <div className={classes.heading}>
             
             <Image
-                className={classes.igma} 
+                
                 src='/images/avatars/image-amyrobson.png'
                 width={'40px'} height={'30px'}
                 alt='vero'  />

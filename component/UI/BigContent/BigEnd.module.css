@@ -1,0 +1,16 @@
+.Bigend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    padding: 1.5rem 0;
+}
+
+/* Head */
+.BigHeading {
+    display: flex;
+    width: 100%;
+    margin: 0 0.5rem 1.3rem 0.5rem;
+}
