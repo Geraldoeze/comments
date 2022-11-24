@@ -3,11 +3,11 @@ import classes from './styless.module.css'
 import Icons from './Icons';
 import Button from './Button';
 
-const ButtonSelect = () => {
+const ButtonSelect = ({score, currentUser, userData}) => {
     return (
         <div className={classes.btn}>
-          <Button />
-          <Icons creator={true}/>
+          <Button number={score}/>
+          <Icons creator={currentUser} user={userData}/>
         </div>
      );
 }

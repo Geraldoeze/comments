@@ -1,7 +1,7 @@
 .Comments {
     width: 85%;
     background-color: var(--color-white);
-    margin: auto;
+    margin: 1rem auto;
     padding: 1rem;
     border-radius: 10px;
     font-family: 'Rubik' sans-serif;

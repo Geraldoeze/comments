@@ -8,20 +8,31 @@ import classes from './Comments.module.css'
 
 
 
-const CommentList = ({details}) => {
+const CommentList = ({details, creator}) => {
 
     const detailData = details[0].comments;
-    console.log(detailData[0].comments)
+    console.log(creator)
     return ( 
         <>
-            { detailData.map((val, id) => {
+        {/* by putting a question mark ? in front of .map we ensure that an error isn't thrown if the value is undefined */}
+            { detailData?.map((val, id) => { 
                 console.log(val.id)
                 return (
                     <div className={classes.Comments}  key={val.id}> 
-                        <Heading  headData={val} />
-                        <Article  articleData ={val}/>
-                        <ButtonSelect />
-                    </div>      
+                       <Heading 
+                            headData={val.user} 
+                            create={val.createdAt}
+                            currentUser={creator}
+                        />
+                       <Article
+                         articleData={val.content}
+                        />
+                      <ButtonSelect 
+                        score={val.score} 
+                        currentUser={creator} 
+                        userData={val.user}
+                       />
+                     </div>      
                 )
             })
                 

@@ -4,10 +4,10 @@
 import classes from './styless.module.css'
 import Image from 'next/dist/client/image';
 
-const Icons = ({creator}) => {
+const Icons = ({creator, user}) => {
     return ( 
         <div className={classes.btn_icon  && (creator && classes.reply)}>
-            {creator ? (
+            {!(creator.username === user.username) ? (
                 <div className={classes.img_reply}>
                     <p className={classes.icons && classes.blu} ><Image src='/images/icon-reply.svg' alt='i' width={'15px'} height={'15px'} />   Reply</p>
                 </div>
@@ -17,7 +17,7 @@ const Icons = ({creator}) => {
             
             {/* <p className={classes.icons && classes.del}><MdDelete />Delete</p> */}
             <p className={classes.icons && classes.blu}><Image src='/images/icon-edit.svg' alt='i' width={'15px'} height={'15px'} />  Edit</p>
-            
+
             </div>
                )
             }

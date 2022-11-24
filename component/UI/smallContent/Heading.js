@@ -2,21 +2,25 @@ import classes from './styless.module.css'
 
 import Image from 'next/image';
 
-const Heading = ({creator, content, headData}) => {
-    
+const Heading = ({currentUser, create, headData}) => {
+    const imageSrc = headData.image.png
+    // This removes the dot ./ so that next can access the image from public folder
+    const imageContent = imageSrc.slice(1, imageSrc.length)
+
+    console.log(currentUser)
     return ( 
         <div className={classes.heading}>
             
             <Image
                 
-                src='/images/avatars/image-amyrobson.png'
-                width={'40px'} height={'30px'}
+                src={imageContent}
+                width={'30px'} height={'30px'}
                 alt='vero'  />
-            <h4 className={classes.heading_name}>amyrobot</h4>
+            <h4 className={classes.heading_name}>{headData.username}</h4>
            
            
-            {!creator && <span className={classes.creator_span}>you</span>}
-            <p className={classes.heading_time}>{headData.createdAt} </p>
+            {currentUser.username === headData.username && <span className={classes.creator_span}>you</span>}
+            <p className={classes.heading_time}>{create}</p>
             
         </div>
      );
