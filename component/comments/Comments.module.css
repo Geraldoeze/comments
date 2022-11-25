@@ -11,9 +11,22 @@
     width: 85%;
     
     background-color: var(--color-white);
-    margin: 1rem auto;
+    margin: 1rem 5rem;
     padding: 1rem;
     border-radius: 10px;
+}
+
+.replies {
+    width: 83%;
+    margin: 1rem 2rem;
+    border: 0;
+    border-left: 1px solid var(--color-grayish-blue);
+}
+
+.response {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 @media (min-width: 400px) {

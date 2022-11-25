@@ -1,0 +1,8 @@
+.reply_content {
+    display: block;
+    width: 90%;
+    background-color: var(--color-white);
+    margin: 0 1rem 0.5rem 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+}

@@ -4,6 +4,7 @@ import '../styles/home.module.css'
 import "@fontsource/rubik";
 import React, {useEffect, useState} from 'react'
 import { DataComment as dataApi } from '../data/data'
+import CommentForm from '../component/comments/CommentForm';
 
 function Homepage(props) {
 
@@ -19,12 +20,15 @@ function Homepage(props) {
         fetchdata()
     }, [])
     
-    const complete = verify ? <CommentList details={backendComments} creator={backendComments[0].currentUser}/> : <p>loading</p>
+    const complete = verify ? (
+        <CommentList details={backendComments} creator={backendComments[0].currentUser} />) : (<p>loading</p>
+    )
     
     console.log(backendComments)
     return (
         <div>    
             {complete}
+            <CommentForm creator={backendComments}/>
         </div>
     )
 }

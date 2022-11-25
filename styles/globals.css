@@ -23,8 +23,8 @@
     
     font-family: "Rubik";
     box-sizing: border-box;
-    /* background-color: var(--color-very-light-gray); */
-    background-color: grey;
+    background-color: var(--color-very-light-gray);
+    
   }
   
   

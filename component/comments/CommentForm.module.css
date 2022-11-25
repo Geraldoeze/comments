@@ -1,0 +1,21 @@
+.commentForm {
+    width: 85%;
+    background-color: var(--color-white);
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 10px;
+    font-family: 'Rubik' sans-serif;
+
+}
+
+.inputFile {
+    width: 99%;
+    height: 5rem;
+    border-radius: 5px;
+    margin: auto;
+    border: 2px solid rgb(85, 84, 84);
+}
+
+.iconButton {
+    display: flex;
+}

@@ -5,7 +5,7 @@ import BigEnd from "../UI/BigContent/BigEnd";
 import ButtonSelect from "../UI/smallContent/ButtonSelect";
 import Heading from "../UI/smallContent/Heading";
 import classes from './Comments.module.css'
-
+import Replies from "../UI/smallContent/Replies/Replies";
 
 
 const CommentList = ({details, creator}) => {
@@ -16,8 +16,9 @@ const CommentList = ({details, creator}) => {
         <>
         {/* by putting a question mark ? in front of .map we ensure that an error isn't thrown if the value is undefined */}
             { detailData?.map((val, id) => { 
-                console.log(val.id)
+                console.log(val)
                 return (
+                    <>
                     <div className={classes.Comments}  key={val.id}> 
                        <Heading 
                             headData={val.user} 
@@ -32,17 +33,27 @@ const CommentList = ({details, creator}) => {
                         currentUser={creator} 
                         userData={val.user}
                        />
-                     </div>      
+                     </div> 
+                     { (val.replies.length >= 1) &&
+                       <div className={classes.response}>
+                           <div className={classes.replies}>
+                        <Replies reply={val} creator={creator} />
+                        </div>
+                    </div>
+                                                     
+                     } 
+                        
+                     </>
                 )
             })
                 
             }
                 
          
-         <div className={classes.showBig}>
+         {/* <div className={classes.showBig}>
              <BigEnd />
             
-         </div>
+         </div> */}
         </>
             
         

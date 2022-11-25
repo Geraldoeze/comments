@@ -1,10 +1,14 @@
 import classes from './styless.module.css'
 
 
-const Article = ({articleData}) => {
+const Article = ({articleData, replyTo}) => {
+    const replyingTo = '@' + replyTo
+
+
     return ( 
         <div className={classes.article}>
-            {articleData}
+           {replyTo && <span style={{'color':'var(--color-moderate-blue)', 'fontWeight':'bold'}}>{replyingTo} </span>}
+           {articleData}
         </div>
      );
 }
