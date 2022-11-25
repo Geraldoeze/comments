@@ -5,6 +5,7 @@ import classes from './styless.module.css'
 import Image from 'next/dist/client/image';
 
 const Icons = ({creator, user}) => {
+    console.log(creator)
     return ( 
         <div className={classes.btn_icon  && (creator && classes.reply)}>
             {!(creator.username === user.username) ? (

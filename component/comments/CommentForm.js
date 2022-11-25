@@ -1,13 +1,13 @@
 import classes from './CommentForm.module.css';
-import Image from 'next';
-
+import Image from 'next/image';
+import React, {useState} from 'react';
 
 const CommentForm = ({creator}) => {
     const UserDetails = creator[0].currentUser;
     const imageSrc = UserDetails.image.png
     // This removes the dot ./ so that next can access the image from public folder
     const imageContent = imageSrc.slice(1, imageSrc.length)
-
+    console.log(UserDetails)
 
 
     return (
@@ -21,11 +21,12 @@ const CommentForm = ({creator}) => {
         <div className={classes.iconButton}>
             <Image 
                 src= {imageContent}
-                width={'20px'}  
+                width={'40px'}  
                 alt='ball'
-                height={'20px'}
+                height={'30px'}
+                
             />
-            <button>
+            <button className={classes.buttonId}>
                 SEND
             </button>
         </div>

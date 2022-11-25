@@ -120,9 +120,8 @@
 .img_delete {
     display: flex;
     width: 90%;
-    
     margin: 0 1rem;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .icons  {

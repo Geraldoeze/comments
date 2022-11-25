@@ -8,27 +8,27 @@ import CommentForm from '../component/comments/CommentForm';
 
 function Homepage(props) {
 
-    const [backendComments, setBackendComment] = useState([])
-    const [verify, setVerify] = useState(false)
-    
-    useEffect(() => {
-        const fetchdata = async () => {
-            const data =  await dataApi()
-            setBackendComment(data)
-            setVerify(true)
-        }
-        fetchdata()
-    }, [])
+    const [verify, setVerify] = useState(true)
+    console.log(props)
+    // useEffect(() => {
+    //     const fetchdata = async () => {
+    //         const data =  await dataApi()
+    //         setBackendComment(data)    
+    //     }
+
+    //     fetchdata()
+    //     setVerify(true)
+    // }, [])
     
     const complete = verify ? (
-        <CommentList details={backendComments} creator={backendComments[0].currentUser} />) : (<p>loading</p>
+        <CommentList details={props.dataComments} creator={props.currentUser} />) : (<p>loading</p>
     )
     
-    console.log(backendComments)
+    console.log(props)
     return (
         <div>    
             {complete}
-            <CommentForm creator={backendComments}/>
+            { verify ? <CommentForm creator={props.dataComments}/> : <p>Load</p>}
         </div>
     )
 }
@@ -36,12 +36,12 @@ function Homepage(props) {
 
 export default Homepage;
 
-// export async function getStaticProps() {    
-//     const dataResult =  await dataApi()
+export async function getStaticProps() {    
+    const dataResult =  await dataApi()
     
-//     return {
-//       props: {dataComments: dataResult[0].comments,
-//             currentUser: dataResult[0].currentUser
-//         }, // will be passed to the page component as props
-//     }
-//   }
+    return {
+      props: {dataComments: dataResult,
+            currentUser: dataResult[0].currentUser
+        }, // will be passed to the page component as props
+    }
+  }

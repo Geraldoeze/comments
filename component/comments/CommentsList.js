@@ -16,7 +16,7 @@ const CommentList = ({details, creator}) => {
         <>
         {/* by putting a question mark ? in front of .map we ensure that an error isn't thrown if the value is undefined */}
             { detailData?.map((val, id) => { 
-                console.log(val)
+                console.log(val.id)
                 return (
                     <>
                     <div className={classes.Comments}  key={val.id}> 

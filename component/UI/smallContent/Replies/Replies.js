@@ -1,5 +1,4 @@
 
-import BigEnd from "../../BigContent/BigEnd"
 import Article from "../Article";
 import ButtonSelect from "../ButtonSelect";
 import Heading from "../Heading";
@@ -11,6 +10,7 @@ const Replies = ({reply, creator}) => {
     return ( 
         <>
         {responseData.map((val, id) => {
+            console.log(id)
             return (
             <div key={val.id} className={classes.reply_content}>
                 <Heading 
