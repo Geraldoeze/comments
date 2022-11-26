@@ -47,12 +47,12 @@ const CommentList = ({details, creator}) => {
                        />
                     
                      </div> 
-                     { (hideButton == val.id) && <CommentForm creator={details}/> }     
+                     { (hideButton == val.id) && <CommentForm creator={details} headData={val.user} /> }     
                     </div>
                      { (val.replies.length >= 1) &&
                        <div className={classes.response}>
                            <div className={classes.replies}>
-                        <Replies reply={val} creator={creator} />
+                        <Replies reply={val} creator={creator}  />
                         </div>
                        
                     </div>
