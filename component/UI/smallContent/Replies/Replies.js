@@ -1,36 +1,31 @@
+import CommentForm from "../../../comments/CommentForm";
+import React, {useState} from 'react'
 
-import Article from "../Article";
-import ButtonSelect from "../ButtonSelect";
-import Heading from "../Heading";
+import Contents from "../Contents";
 import classes from './Replies.module.css';
 
-const Replies = ({reply, creator}) => {
+const Replies = ({reply, creator, details}) => {
+    const [button, setButton] = useState(null)
     const responseData = reply.replies
-    console.log(responseData)
+
+    const showComment = (value) => {
+        setButton(value)   
+    }
+    
     return ( 
         <>
         {responseData.map((val, id) => {
-            console.log(id)
+        
             return (
+                <>
             <div key={val.id} className={classes.reply_content}>
-                <Heading 
-                headData={val.user} 
-                create={val.createdAt}
-                currentUser={creator}
-                />
-                <Article
-                replyTo={val.replyingTo}
-                articleData={val.content}
-                />
-                <ButtonSelect 
-                score={val.score} 
-                currentUser={creator} 
-                userData={val.user}
-                />
+                <Contents val={val} currentUser={creator} openButton={showComment}
+                 />
             </div>
+            { (button == val.id) && <CommentForm creator={details} headData={val.user} /> }     
+            </>
             )
         })}
-       
         </>
      );
 }

@@ -1,53 +1,59 @@
 import classes from './CommentForm.module.css';
 import Image from 'next/image';
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
+
+
 
 const CommentForm = ({creator, headData}) => {
-    const [comment, setComment] = useState('');
+   
+    const inputRef = useRef(null);
 
-
+    const [comment, setComment] = useState(null);
     const UserDetails = creator[0].currentUser;
     const imageSrc = UserDetails.image.png
     // This removes the dot ./ so that next can access the image from public folder
     const imageContent = imageSrc.slice(1, imageSrc.length)
-    console.log(UserDetails)
+    
 
+  
     const submitHandler = (e) => {
         e.preventDefault();
+        console.log(inputRef.current.value);
         
     }
-
-    
-
-    
+    console.log(comment)
+     
     return (
-        <div className={classes.commentForm}>
-        <form onSubmit={submitHandler}>
-            <div className={classes.inputFile}>
-            {(typeof headData === 'object') && <span>@{headData.username},</span> }
-            <input 
-              type='text'
-              placeholder='Add something'
-              
-              onChange={(e) => setComment(e.target.value)}
-               />
-            </div>
-        <div className={classes.iconButton}>
-            <Image 
-                src= {imageContent}
-                width={'40px'}  
-                alt='ball'
-                height={'30px'}
-                
-            />
-            <button className={classes.buttonId}>
-                SEND
-            </button>
+        <>
+        {/* <div className={classes.commentForm} key={Math.floor(Math.random() * 10)}>
+                <form onSubmit={submitHandler}>
+                    <div className={classes.inputFile}>
+                        {(typeof headData === 'object') && <div>@{headData.username},</div> }
+                      <input type='text' placeholder='Add something' id='comment' ref={inputRef} /> 
+                    </div>
+                    <div className={classes.iconButton}>
+                        <Image src= {imageContent} width={'35px'}  alt='ball' height={'35px'} />
+                        <button className={classes.buttonId}>SEND</button>
+                    </div>
+                </form>
+            </div> */}
         
-        </div>
-        </form>
-        </div>
+            <form onSubmit={submitHandler}>
+                <div className={classes.BigcommentForm}>
+                <div>
+              <Image src={imageContent} width={'35px'} alt={'baller'} height={'35px'} />
+              </div>
+                <div className={classes.BiginputFile}>
+              {(typeof headData === 'object') && <div>@{headData.username},</div> }
+              <input className={classes.inputData} type='text' id='Bigcomment' ref={inputRef} />
+                </div>
+                  <button className={classes.buttonId}>SEND</button>
+                </div>
+            </form> 
+        </>
      );
 }
  
 export default CommentForm;
+
+

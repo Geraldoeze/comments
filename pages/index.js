@@ -5,11 +5,13 @@ import "@fontsource/rubik";
 import React, {useEffect, useState} from 'react'
 import { DataComment as dataApi } from '../data/data'
 import CommentForm from '../component/comments/CommentForm';
+import axios from 'axios';
+
 
 function Homepage(props) {
 
     const [verify, setVerify] = useState(true)
-    console.log(props)
+    
     // useEffect(() => {
     //     const fetchdata = async () => {
     //         const data =  await dataApi()
@@ -19,12 +21,20 @@ function Homepage(props) {
     //     fetchdata()
     //     setVerify(true)
     // }, [])
+
+    // useEffect(()=> {
+    //     fetch('https://api.jsonserve.com/lOLs08', { mode: 'no-cors', method:'GET', headers:{'Content-Type': 'application/json'}})
+    //     .then((response) => {
+    //         console.log(response)
+    //     })
+    //     .catch(err => console.log(err))
+    // },[])
     
     const complete = verify ? (
         <CommentList details={props.dataComments} creator={props.currentUser} />) : (<p>loading</p>
     )
     
-    console.log(props)
+    
     return (
         <div>    
             {complete}

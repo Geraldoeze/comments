@@ -1,4 +1,5 @@
 .commentForm {
+    
     width: 85%;
     background-color: var(--color-white);
     margin: 1rem auto;
@@ -12,8 +13,21 @@
     width: 99%;
     height: 5rem;
     border-radius: 5px;
+    display: block;
     margin: auto;
     border: 2px solid rgb(85, 84, 84);
+}
+
+.inputData {
+    height: 80%;
+    width: 90%;
+    border: none;
+    background-color: darkkhaki;
+    color: var(--color-grayish-blue);
+}
+
+.inputData:focus {
+    outline: none;
 }
 
 .iconButton {
@@ -33,4 +47,29 @@ font-family: inherit;
 letter-spacing: 0.07rem;
 font-weight: bold;
 
+}
+
+.buttonId:hover {
+    background-color: skyblue;
+}
+
+/* Big styles */
+
+.BigcommentForm {
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    background-color: var(--color-white);
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 10px;
+    font-family: 'Rubik' sans-serif;
+}
+
+.BiginputFile {
+    width: 75%;
+    height: 5rem;
+    border-radius: 5px;
+    margin: auto;
+    border: 2px solid rgb(85, 84, 84);
 }
