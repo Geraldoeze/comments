@@ -123,7 +123,8 @@ cursor: pointer;
 
 .Bigcreator_span {
     background-color: var(--color-moderate-blue);
-    width: 2rem;
+    width: 30px;
+    height: 20px;
     color: var(--color-white);
     text-align: center;
     padding: 4px;

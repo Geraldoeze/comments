@@ -15,6 +15,9 @@ const CommentForm = ({creator, headData}) => {
     const imageContent = imageSrc.slice(1, imageSrc.length)
     
 
+    const inputFocus = () => {
+      document.getElementById('Bigcomment').focus();
+    }
   
     const submitHandler = (e) => {
         e.preventDefault();
@@ -38,18 +41,18 @@ const CommentForm = ({creator, headData}) => {
                 </form>
             </div> */}
         
-            <form onSubmit={submitHandler}>
+            
                 <div className={classes.BigcommentForm}>
                 <div>
               <Image src={imageContent} width={'35px'} alt={'baller'} height={'35px'} />
               </div>
-                <div className={classes.BiginputFile}>
-              {(typeof headData === 'object') && <div>@{headData.username},</div> }
-              <input className={classes.inputData} type='text' id='Bigcomment' ref={inputRef} />
+                <div className={classes.BiginputFile} onClick={inputFocus}>
+              {(typeof headData === 'object') && <label className={classes.labelData}>@{headData.username},</label> }
+              <input className={classes.inputData} type='text' id='Bigcomment' ref={inputRef}/>
                 </div>
-                  <button className={classes.buttonId}>SEND</button>
+                  <button type='submit' onClick={submitHandler} className={classes.buttonId}>SEND</button>
                 </div>
-            </form> 
+             
         </>
      );
 }

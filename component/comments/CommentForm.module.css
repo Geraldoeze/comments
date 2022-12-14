@@ -19,15 +19,22 @@
 }
 
 .inputData {
-    height: 80%;
+    height: 40%;
     width: 90%;
     border: none;
-    background-color: darkkhaki;
+    background-color: transparent;
     color: var(--color-grayish-blue);
+    font-size: larger;
+    padding: 0;
 }
 
 .inputData:focus {
     outline: none;
+}
+
+.labelData {
+    padding: 0.2rem 0.4rem;
+    font-size: larger;
 }
 
 .iconButton {
@@ -57,7 +64,7 @@ font-weight: bold;
 
 .BigcommentForm {
     display: flex;
-    width: 85%;
+    width: 90%;
     justify-content: space-between;
     background-color: var(--color-white);
     margin: 1rem auto;
@@ -67,6 +74,7 @@ font-weight: bold;
 }
 
 .BiginputFile {
+    display: flex;
     width: 75%;
     height: 5rem;
     border-radius: 5px;
