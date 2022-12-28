@@ -2,10 +2,9 @@ import classes from "./styless.module.css";
 import Image from "next/dist/client/image";
 import Modal from "../Modal/Modal";
 import {useState} from  'react';
-import { useHttpClient } from "../../../hook/http-hook";
+
 
 const Icons = ({ creator, user, openButton, IDE }) => {
-  const { sendRequest, isLoading } = useHttpClient();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -20,29 +19,41 @@ const Icons = ({ creator, user, openButton, IDE }) => {
   const deleteHandler = async () => {
     setShowModal(true)
   }
+  
   const deletePost = async () => {
+    console.log(IDE)
     const Body = {
       id: IDE._id
     }
+    console.log(IDE._id)
     if(typeof IDE?.replies === 'string') {
       // send comment request
-      const response = await sendRequest(`/api/Comments/`, "DELETE", JSON.stringify(Body), null)
-      console.log('com del', response);
+      const response = await fetch(`/api/Comment/${IDE._id}`,{
+        method: "DELETE", 
+        
+      })
+      const data = response.json();
+      console.log(data);
 
     } else if (typeof IDE?.replyingTo === 'string'  ) {
       // send replies request
-      const response = await sendRequest(`/api/Replies/`, "DELETE", JSON.stringify(Body))
-      console.log('rep del', response);
+      const response = await fetch(`/api/Replies/${IDE._id}`,{
+        method: "DELETE"
+      })
+      const data = response.json();
+      console.log(data);
     }
     window.location.reload();
   }
+  
   return (
     <>
 
     <Modal
         Header='Delete Comment' onClose={hideModal} deleteHandler={deletePost}
        title="Are you sure you want to delete this comment? This will remove the comment and can't be undone."
-        show={showModal} />  
+        show={showModal}
+     />  
   <div className={classes.btn_icon && creator && classes.reply}>
       {!(creator[0].username === user.username) ? (
         <div className={classes.img_reply}>

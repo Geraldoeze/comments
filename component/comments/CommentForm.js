@@ -2,6 +2,7 @@ import classes from "./CommentForm.module.css";
 import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
 import { useHttpClient } from "../../hook/http-hook";
+import { v4 as uuidv4 } from 'uuid'
 
 const CommentForm = ({
   creator,
