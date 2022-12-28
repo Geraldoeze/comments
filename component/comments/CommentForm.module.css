@@ -13,28 +13,47 @@
     width: 99%;
     height: 5rem;
     border-radius: 5px;
-    display: block;
+    display: flex;
     margin: auto;
     border: 2px solid rgb(85, 84, 84);
+    cursor: pointer;
 }
 
 .inputData {
-    height: 40%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
     border: none;
     background-color: transparent;
     color: var(--color-grayish-blue);
     font-size: larger;
+    font-family: inherit;
     padding: 0;
+    cursor: pointer;
 }
 
 .inputData:focus {
     outline: none;
 }
 
+.text_style {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: var(--color-grayish-blue);
+    font-size: larger;
+    padding: 0.2rem 0.4rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.text_style:focus {
+    outline: none;
+}
+
 .labelData {
     padding: 0.2rem 0.4rem;
     font-size: larger;
+    cursor: pointer;
 }
 
 .iconButton {
@@ -53,18 +72,18 @@ color: var(--color-white);
 font-family: inherit;
 letter-spacing: 0.07rem;
 font-weight: bold;
-
+cursor: pointer;
 }
 
 .buttonId:hover {
-    background-color: skyblue;
+    background-color: var(--color-light-grayish-blue);
 }
 
 /* Big styles */
 
 .BigcommentForm {
     display: flex;
-    width: 90%;
+    width: 85%;
     justify-content: space-between;
     background-color: var(--color-white);
     margin: 1rem auto;
@@ -80,4 +99,17 @@ font-weight: bold;
     border-radius: 5px;
     margin: auto;
     border: 2px solid rgb(85, 84, 84);
+    cursor: pointer;
+}
+
+@media (min-width: 750px) {
+    .commentForm {
+        display: none;
+    }
+}
+
+@media (max-width: 748px) {
+    .BigcommentForm {
+        display: none;
+    }
 }

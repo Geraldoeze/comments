@@ -1,57 +1,51 @@
 // our-main-domain/
-import CommentList from '../component/comments/CommentsList';
-import '../styles/home.module.css'
+import CommentList from "../component/comments/CommentsList";
+import "../styles/home.module.css";
 import "@fontsource/rubik";
-import React, {useEffect, useState} from 'react'
-import { DataComment as dataApi } from '../data/data'
-import CommentForm from '../component/comments/CommentForm';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import LoadingSpinner from '../component/UI/LoadingSpinner/LoadingSpinner'
+
+import { initMongoose } from "../lib/mongoose";
+import { findAllComments } from "./api/Comment";
+import { findAllReplies } from "./api/Replies";
+import { getUser } from "./api/user";
+import PostComment from "../component/comments/postComment";
+import Modal from "../component/UI/Modal/Modal";
 
 
-function Homepage(props) {
 
-    const [verify, setVerify] = useState(true)
+function Homepage({ comments, currentUser, replies }) {
+  const [verify, setVerify] = useState(true);
+  
+
+  // LoadingSpinner and Modal
+  const [showModal, setShowModal] = useState(false);
+  const hideModal = () => setShowModal(false);
+  const openModal = () => setShowModal(true);
+
+  return (
     
-    // useEffect(() => {
-    //     const fetchdata = async () => {
-    //         const data =  await dataApi()
-    //         setBackendComment(data)    
-    //     }
-
-    //     fetchdata()
-    //     setVerify(true)
-    // }, [])
-
-    // useEffect(()=> {
-    //     fetch('https://api.jsonserve.com/lOLs08', { mode: 'no-cors', method:'GET', headers:{'Content-Type': 'application/json'}})
-    //     .then((response) => {
-    //         console.log(response)
-    //     })
-    //     .catch(err => console.log(err))
-    // },[])
-    
-    const complete = verify ? (
-        <CommentList details={props.dataComments} creator={props.currentUser} />) : (<p>loading</p>
-    )
-    
-    
-    return (
-        <div>    
-            {complete}
-            { verify ? <CommentForm creator={props.dataComments}/> : <p>Load</p>}
-        </div>
-    )
+      <div>
+        <Modal show={showModal} > <LoadingSpinner /></Modal>
+        <CommentList show={openModal} onClose={hideModal} details={comments} creator={currentUser} reply={replies} />
+        <PostComment show={openModal} onClose={hideModal} creator={currentUser}  />
+      </div>
+        
+  );
 }
-
 
 export default Homepage;
 
-export async function getStaticProps() {    
-    const dataResult =  await dataApi()
-    
-    return {
-      props: {dataComments: dataResult,
-            currentUser: dataResult[0].currentUser
-        }, // will be passed to the page component as props
-    }
-  }
+export async function getServerSideProps() {
+  await initMongoose();
+  const comments = await findAllComments();
+  const replies = await findAllReplies();
+  const creator = await getUser();
+  return {
+    props: {
+      comments: JSON.parse(JSON.stringify(comments)),
+      replies: JSON.parse(JSON.stringify(replies)),
+      currentUser: JSON.parse(JSON.stringify(creator)),
+    },
+  };
+}

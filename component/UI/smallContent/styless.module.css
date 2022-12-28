@@ -52,7 +52,7 @@
 .btn {
     display: flex;
     justify-content: space-between;
-    margin: 1.4rem 0;
+    margin: 1rem 0;
     margin-bottom: 0.2rem;
     align-items: center;
     width: 100%;
@@ -80,21 +80,20 @@
 .btn_plus {
     height: 0.8rem;
     width: 0.8rem;
-    color: rgb(165, 157, 214);
+    color: var(--color-light-grayish-blue);
     cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.image_icon {
+    
 }
 
 .btn_plus:hover {
     color: var(--color-moderate-blue);
+    transform: scale(1.5);
 }
 
-.btn_minus {
-    height: 0.8rem;
-    width: 0.8rem;
-    color: rgb(165, 157, 214);
-    cursor: pointer;   
-    
-}
 
 .btn_minus:hover {
     color: var(--color-moderate-blue);
@@ -126,13 +125,13 @@
 
 .icons  {
     cursor: pointer;
-    
 }
 
 .del {
     color: var(--color-soft-red);
     font-size: larger;
     font-weight: 700;
+    cursor: pointer;
 }
 .del:hover {
     color: var(--color-pale-red);
@@ -141,6 +140,7 @@
     color: var(--color-moderate-blue);
     font-size: larger;
     font-weight: 700;
+    cursor: pointer;
 }
 .blu:hover {
     color: var(--color-light-grayish-blue);
