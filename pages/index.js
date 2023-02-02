@@ -31,50 +31,8 @@ function Homepage({ comments, currentUser, replies }) {
 
   const [comment, setComment] = useState(comments);
   const [replys, setReplys] = useState(replies);
-  
 
   
-  
-  // // get new comment created
-  // const getNewState = (value) => {
-  //   const newValue = { ...value };
-  //   setComments([...response, newValue]);
-  // };
-
-  // // get comment edited
-  // const getEditContent = (value) => {
-  //   setComments((com) => {
-  //     const filtered = com?.filter((del) => del._id !== value._id);
-  //     return [...filtered, value];
-  //   });
-  // };
-
-  // // getDeletedComment
-  // const deleteContents = (id) => {
-  //   setComments((com) => com?.filter((del) => del._id !== id));
-  //   console.log(comments);
-  // };
-
-  
-  // // get new reply created
-  // const getNewReply = (value) => {
-  //   const newValue = { ...value };
-  //   setResponse([...response, newValue]);
-  // };
-
-  // // get reply edited
-  // const getEditReply = (value) => {
-  //   setResponse((response) => {
-  //     const filtered = response?.filter((del) => del._id !== value._id);
-  //     return [...filtered, value];
-  //   });
-  // };
-
-  // // getDeletedReply
-  // const deleteReply = (id) => {
-  //   setResponse((response) => response?.filter((del) => del._id !== id));
-  //   console.log(response);
-  // };
 
 
   return (

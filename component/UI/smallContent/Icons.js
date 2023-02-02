@@ -1,11 +1,13 @@
 import classes from "./styless.module.css";
 import Image from "next/dist/client/image";
 import Modal from "../Modal/Modal";
-import {useState} from  'react';
+import {useState, useContext} from  'react';
+import { PostContext } from "../../../hook/context-hook";
 
 
 const Icons = ({ creator, user, openButton, IDE }) => {
 
+  const {comment, setComment, replys, setReplys} = useContext(PostContext);
   const [showModal, setShowModal] = useState(false);
 
   const buttonID = (event) => {
@@ -20,13 +22,25 @@ const Icons = ({ creator, user, openButton, IDE }) => {
     setShowModal(true)
   }
   
+  // getDeletedComment
+  const deleteContents = (id) => {
+    setComment((com) => com?.filter((del) => del._id !== id));
+    console.log(comment);
+  };
+  
+// getDeletedReply
+  const deleteReply = (id) => {
+    setReplys((reply) => reply?.filter((del) => del._id !== id));
+    console.log(replys);
+  };
+
+
   const deletePost = async () => {
     console.log(IDE)
-    const Body = {
-      id: IDE._id
-    }
+    
     console.log(IDE._id)
     if(typeof IDE?.replies === 'string') {
+      deleteContents(IDE._id)
       // send comment request
       const response = await fetch(`/api/Comment/${IDE._id}`,{
         method: "DELETE", 
@@ -36,6 +50,7 @@ const Icons = ({ creator, user, openButton, IDE }) => {
       console.log(data);
 
     } else if (typeof IDE?.replyingTo === 'string'  ) {
+      deleteReply(IDE._id)
       // send replies request
       const response = await fetch(`/api/Replies/${IDE._id}`,{
         method: "DELETE"
@@ -43,7 +58,7 @@ const Icons = ({ creator, user, openButton, IDE }) => {
       const data = response.json();
       console.log(data);
     }
-    window.location.reload();
+    
   }
   
   return (

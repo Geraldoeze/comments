@@ -1,11 +1,16 @@
 import classes from "./CommentForm.module.css";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHttpClient } from "../../hook/http-hook";
+import { PostContext } from "../../hook/context-hook";
 
-const PostComment = ({ creator, headData, reload }) => {
-  const [value, setValue] = useState();
-  const [replyTo, setReplyTo] = useState(headData);
+const RandomId = 100000 + Math.floor(Math.random() * 900000);
+
+const PostComment = ({ creator }) => {
+  const {comment, setComment} = useContext(PostContext);
+  
+  const [value, setValue] = useState('');
+  
 
   const { sendRequest, isLoading } = useHttpClient();
 
@@ -26,7 +31,6 @@ const PostComment = ({ creator, headData, reload }) => {
   const submitCommentHandler = async () => {
     
     const commentBody = {
-      ide: 76,
       content: value,
       createdAt: Date.now(),
       score: 0,
@@ -34,6 +38,11 @@ const PostComment = ({ creator, headData, reload }) => {
       replies: 'something good',
       comment: 'creator'
     };
+
+     // get new comment created
+    const newValue = { ...commentBody, _id: RandomId.toString() };
+    setComment([...comment, newValue]);
+  
     if (value?.length >= 2) {
       await sendRequest(
         "/api/Comments/",
@@ -41,8 +50,9 @@ const PostComment = ({ creator, headData, reload }) => {
         JSON.stringify(commentBody)
       );
       
-      window.location.reload();
+      
     } else console.log('Invalid Inputs')
+    setValue('');
   };
 
   return (
@@ -53,6 +63,7 @@ const PostComment = ({ creator, headData, reload }) => {
             className={classes.text_style}
             type="text"
             onChange={(e) => setValue(e.target.value)}
+            value={value}
             placeholder="Add something"
             id="StyleComment"
           />

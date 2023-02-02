@@ -1,8 +1,8 @@
 import classes from "./styleBig.module.css";
 import Image from "next/dist/client/image";
 import Modal from "../Modal/Modal";
-import {useState} from 'react';
-
+import {useState, useContext} from 'react';
+import { PostContext } from "../../../hook/context-hook";
 
 
 const styles = {
@@ -14,7 +14,7 @@ const styles = {
 const BigIcons = ({ creator, user, openButton, IDE }) => {
 
   
-
+  const {comment, setComment, replys, setReplys} = useContext(PostContext);
   const [showModal, setShowModal] = useState(false);
 
   const buttonID = (event) => {
@@ -29,14 +29,31 @@ const BigIcons = ({ creator, user, openButton, IDE }) => {
     setShowModal(true)
   }
   
+// getDeletedComment
+  const deleteContents = (id) => {
+    setComment((com) => com?.filter((del) => del._id !== id));
+    console.log(comment);
+  };
+  
+// getDeletedReply
+  const deleteReply = (id) => {
+    setReplys((reply) => reply?.filter((del) => del._id !== id));
+    console.log(replys);
+  };
+
+
   const deletePost = async () => {
+    
     console.log(IDE)
     const Body = {
       id: IDE._id
     }
     console.log(IDE._id)
     if(typeof IDE?.replies === 'string') {
-      // send comment request
+      // change state
+      deleteContents(IDE?._id)
+
+      // send comment delete request
       const response = await fetch(`/api/Comment/${IDE._id}`,{
         method: "DELETE", 
         
@@ -45,14 +62,17 @@ const BigIcons = ({ creator, user, openButton, IDE }) => {
       console.log(data);
 
     } else if (typeof IDE?.replyingTo === 'string'  ) {
-      // send replies request
+      //  change reply state
+      deleteReply(IDE?._id)
+
+      // send replies delete request
       const response = await fetch(`/api/Replies/${IDE._id}`,{
         method: "DELETE"
       })
       const data = response.json();
       console.log(data);
     }
-    window.location.reload();
+    
   }
   return (
     <>

@@ -1,8 +1,12 @@
 import classes from "./CommentForm.module.css";
 import Image from "next/image";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { PostContext } from "../../hook/context-hook";
 import { useHttpClient } from "../../hook/http-hook";
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from "uuid";
+import { SendPostReplies, SendUpdateReplies } from "./postUpdate";
+
+const RandomId = 100000 + Math.floor(Math.random() * 900000);
 
 const CommentForm = ({
   creator,
@@ -12,16 +16,19 @@ const CommentForm = ({
   show,
   onClose,
 }) => {
-  const [value, setValue] = useState({
-    init: `@${headData?.username}, `,
-    val: "",
-  });
-  const [replyTo, setReplyTo] = useState(headData);
-  const [update, setUpdate] = useState({
-    init: `@${creatorId.replyingTo}, `,
-    val: "",
-  });
+  
+  const head = headData?.username;
 
+  const Ref = useRef("");
+  const bigRef = useRef("");
+
+  const [send, setSend] = useState(`@${head}, `);
+
+  const [replyTo, setReplyTo] = useState(headData);
+
+  const [update, setUpdate] = useState(`@${creatorId.replyingTo}, `);
+
+  const { comment, setComment, replys, setReplys } = useContext(PostContext);
   const { sendRequest, isLoading } = useHttpClient();
 
   const UserDetails = creator[0];
@@ -29,78 +36,85 @@ const CommentForm = ({
 
   // This removes the dot ./ so that next can access the image from public folder
   const imageContent = imageSrc.slice(1, imageSrc.length);
-  const inputFocusBigReply = () =>
-    document.getElementById("BigcommentReply").focus();
-  const inputFocusBigUpdate = () =>
-    document.getElementById("BigcommentUpdate").focus();
 
-  const inputFocusReply = () => document.getElementById("commentReply").focus();
-  const inputFocusUpdate = () =>
-    document.getElementById("commentUpdate").focus();
+  // get new reply created
+  const getNewReply = (value) => {
+    const newValue = { ...value };
+    setReplys([...replys, newValue]);
+  };
 
-  const submitReplyHandler = async (e, replyTo) => {
-    const replyValue = value.val.split(",")[1]?.trim();
+  // get reply edited
+  const getUpdateReply = (value) => {
+    
+    const findOne = replys?.filter((val) => val._id === value.id)
+    const newUpdate = {...findOne[0], content: value.content, createdAt: value.createdAt}
+    
+    setReplys((reply) => {
+      const filtered = reply?.filter((del) => del._id !== newUpdate._id);
+      
+      return [...filtered, newUpdate];
+    });
+  };
 
+  
+    // // get comment edited
+    const getEditContent = (value) => {
+      const findOne = replys?.filter((val) => val._id === value.id)
+      const newUpdate = {...findOne[0], content: value.content, createdAt: value.createdAt}
+      
+      setComment((com) => {
+        const filtered = reply?.filter((del) => del._id !== newUpdate._id);
+        
+        return [...filtered, value];
+      });
+    };
+
+  const submitSmallReplyHandler = async (e, replyTo) => {
+    const newVal = Ref.current?.value;
+    const valuelen = newVal.split(", ")[1]?.trim();
     show();
     const replyBody = {
-      ide: 76,
-      content: replyValue,
+      ide: RandomId,
+      content: valuelen,
       createdAt: Date.now(),
       score: 0,
       user: creator[0],
       replyingTo: replyTo,
     };
 
-    if (replyValue?.length >= 2) {
-      const response = await sendRequest(
-        "/api/Replies/",
-        "POST",
-        JSON.stringify(replyBody)
-      );
-      window.location.reload();
-      console.log(response);
-    } else console.log("Invalid Input");
-
+    const newValue = { ...replyBody, _id: uuidv4() };
+    getNewReply(newValue);
+    SendPostReplies(replyBody);
     openButton(null);
     onClose();
   };
 
-  const submitUpdateHandler = async (e) => {
+  const submitSmallUpdateHandler = async (e) => {
+    e.preventDefault();
     show();
+    const updatVal = Ref.current.value;
     try {
       if (typeof creatorId?.replyingTo === "string") {
-        const updateValue = update.val.split(",")[1]?.trim();
-        e.preventDefault();
-        const commentBody = {
+        const updateValue = updatVal?.split(",")[1]?.trim();
+        const UpdatedBody = {
           id: creatorId._id,
           content: updateValue,
           createdAt: Date.now(),
         };
+        getUpdateReply(UpdatedBody)
         if (updateValue?.length >= 3) {
-          // send replies request
-          await sendRequest(
-            `/api/Replies/`,
-            "PATCH",
-            JSON.stringify(commentBody)
-          );
-          window.location.reload();
+          // SendUpdateReplies(UpdatedBody)
         }
       } else if (typeof creatorId?.replies === "string") {
-        const updateCommentValue = update.val;
-        e.preventDefault();
-        const updateCommentBody = {
+        const updateCommentValue = updatVal
+        const UpdatedBody = {
           id: creatorId._id,
           content: updateCommentValue,
           createdAt: Date.now(),
         };
+        getEditContent(UpdatedBody)
         if (updateCommentValue?.length >= 3) {
-          // send comment
-          await sendRequest(
-            `/api/Comment/`,
-            "PATCH",
-            JSON.stringify(updateCommentBody)
-          );
-          window.location.reload();
+          // SendUpdateComments(UpdatedBody)
         }
       }
     } catch (err) {
@@ -110,21 +124,76 @@ const CommentForm = ({
     onClose();
   };
 
-  const checkValue = update.init === "@undefined, " ? "" : update.init;
+  const submitBigUpdateHandler = async (e) => {
+    e.preventDefault();
+    show();
+    const updatVal = bigRef.current.value;
+    try {
+      if (typeof creatorId?.replyingTo === "string") {
+        const updateValue = updatVal?.split(",")[1]?.trim();
+        const UpdatedBody = {
+          id: creatorId._id,
+          content: updateValue,
+          createdAt: Date.now(),
+        };
+        getUpdateReply(UpdatedBody)
+
+        if (updateValue?.length >= 3) {
+          // SendUpdateReplies(UpdatedBody)
+        }
+      } else if (typeof creatorId?.replies === "string") {
+        const updateCommentValue = updatVal
+        const UpdatedBody = {
+          id: creatorId._id,
+          content: updateCommentValue,
+          createdAt: Date.now(),
+        };
+        getEditContent(UpdatedBody)
+        if (updateCommentValue?.length >= 3) {
+          // SendUpdateComments(UpdatedBody)
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    openButton(null);
+    onClose();
+  };
+
+  const submitBigReplyHandler = async (e, replyTo) => {
+    const newVal = bigRef.current?.value;
+    const valuelen = newVal.split(", ")[1]?.trim();;
+    show();
+    const replyBody = {
+      ide: RandomId,
+      content: valuelen,
+      createdAt: Date.now(),
+      score: 0,
+      user: creator[0],
+      replyingTo: replyTo,
+    };
+
+    const newValue = { ...replyBody, _id: uuidv4() };
+    getNewReply(newValue);
+    SendPostReplies(replyBody);
+    openButton(null);
+    onClose();
+  };
+
+  const checkValue = update === "@undefined, " ? "" : update;
 
   return (
     <>
       <div className={classes.commentForm} key={uuidv4()}>
         {replyTo.username !== creator[0].username ? (
           <>
-            <div className={classes.inputFile} onClick={inputFocusReply}>
+            <div className={classes.inputFile}>
               <textarea
-                className={classes.text_style}
-                value={value.init}
+                defaultValue={send}
                 type="text"
-                placeholder="Add something"
-                id="commentReply"
-                onChange={(e) => setValue(e.target.value)}
+                ref={Ref}
+                className={classes.text_style}
+                id="commentSend"
               />
             </div>
             <div className={classes.iconButton}>
@@ -136,7 +205,7 @@ const CommentForm = ({
               />
               <button
                 type="submit"
-                onClick={(e) => submitReplyHandler(e, headData.username)}
+                onClick={(e) => submitSmallReplyHandler(e, headData.username)}
                 className={classes.buttonId}
               >
                 SEND
@@ -145,11 +214,11 @@ const CommentForm = ({
           </>
         ) : (
           <>
-            <div className={classes.inputFile} onClick={inputFocusUpdate}>
+            <div className={classes.inputFile}>
               <textarea
-                value={checkValue}
+                defaultValue={checkValue}
                 type="text"
-                onChange={(e) => setUpdate({ val: e.target.value })}
+                ref={Ref}
                 className={classes.text_style}
                 id="commentUpdate"
               />
@@ -163,7 +232,7 @@ const CommentForm = ({
               />
               <button
                 type="submit"
-                onClick={submitUpdateHandler}
+                onClick={submitSmallUpdateHandler}
                 className={classes.buttonId}
               >
                 UPDATE
@@ -184,10 +253,10 @@ const CommentForm = ({
         </div>
         {replyTo.username !== creator[0].username ? (
           <>
-            <div className={classes.BiginputFile} onClick={inputFocusBigReply}>
+            <div className={classes.BiginputFile}>
               <textarea
-                value={value.init}
-                onChange={(e) => setValue({ val: e.target.value })}
+                defaultValue={send}
+                ref={bigRef}
                 className={classes.text_style}
                 id="BigcommentReply"
               />
@@ -195,7 +264,7 @@ const CommentForm = ({
 
             <button
               type="submit"
-              onClick={(e) => submitReplyHandler(e, headData.username)}
+              onClick={(e) => submitBigReplyHandler(e, headData.username)}
               className={classes.buttonId}
             >
               SEND
@@ -203,19 +272,18 @@ const CommentForm = ({
           </>
         ) : (
           <>
-            <div className={classes.BiginputFile} onClick={inputFocusBigUpdate}>
-          
+            <div className={classes.BiginputFile}>
               <textarea
-                value={checkValue}
+                defaultValue={checkValue}
+                ref={bigRef}
                 className={classes.text_style}
-                type="text"
                 id="BigcommentUpdate"
-                onChange={(e) => setUpdate({ val: e.target.value })}
               />
             </div>
+
             <button
               type="submit"
-              onClick={submitUpdateHandler}
+              onClick={(e) => submitBigUpdateHandler(e, headData.username)}
               className={classes.buttonId}
             >
               UPDATE
