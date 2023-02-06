@@ -10,7 +10,6 @@
   "dependencies": {
     "@fontsource/rubik": "^4.5.11",
     "axios": "^1.2.0",
-    "dotenv": "^16.0.3",
     "javascript-time-ago": "^2.5.9",
     "mongodb": "^3.5.9",
     "mongoose": "^6.8.0",
@@ -27,6 +26,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "dotenv": "^16.0.3",
     "eslint": "8.9.0",
     "eslint-config-next": "12.1.0",
     "postcss": "^8.4.19",
