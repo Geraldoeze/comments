@@ -33,7 +33,7 @@ function Homepage({ comments, currentUser, replies }) {
   const [replys, setReplys] = useState(replies);
 
   
-
+  console.log("db", currentUser)
 
   return (
     <PostContext.Provider value={{comment, setComment, replys, setReplys}}>
