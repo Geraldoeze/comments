@@ -52,7 +52,7 @@ export default Homepage;
 
 
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   await initMongoose();
   const comments = await findAllComments();
   const replies = await findAllReplies();
