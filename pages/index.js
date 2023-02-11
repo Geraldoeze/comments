@@ -52,27 +52,27 @@ export default Homepage;
 
 
 
-export async function getServerSideProps() {
-  // await initMongoose();
-  // const comments = await findAllComments();
-  // const replies = await findAllReplies();
-  // const creator = await getUser();
-  return {
-    props: {
-      comments: [],
-      replies: [],
-      currentUser: {
-        "image": { 
-          "png": "./images/avatars/image-juliusomo.png",
-          "webp": "./images/avatars/image-juliusomo.webp"
-        },
-        "username": "juliusomo"
-      },
-    }
-    // props: {
-    //   comments: JSON.parse(JSON.stringify(comments)),
-    //   replies: JSON.parse(JSON.stringify(replies)),
-    //   currentUser: JSON.parse(JSON.stringify(creator)),
-    // },
-  };
-}
+// export async function getServerSideProps() {
+//   await initMongoose();
+//   const comments = await findAllComments();
+//   const replies = await findAllReplies();
+//   const creator = await getUser();
+//   return {
+//     props: {
+//       comments: [],
+//       replies: [],
+//       currentUser: {
+//         "image": { 
+//           "png": "./images/avatars/image-juliusomo.png",
+//           "webp": "./images/avatars/image-juliusomo.webp"
+//         },
+//         "username": "juliusomo"
+//       },
+//     }
+//     // props: {
+//     //   comments: JSON.parse(JSON.stringify(comments)),
+//     //   replies: JSON.parse(JSON.stringify(replies)),
+//     //   currentUser: JSON.parse(JSON.stringify(creator)),
+//     // },
+//   };
+// }
