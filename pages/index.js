@@ -37,10 +37,10 @@ function Homepage({ comments, currentUser, replies }) {
 
   return (
     <PostContext.Provider value={{comment, setComment, replys, setReplys}}>
-      <div> Testing
-        {/* <Modal show={showModal} > <LoadingSpinner /></Modal>
+      <div>
+        <Modal show={showModal} > <LoadingSpinner /></Modal>
         {!!comments && <CommentList show={openModal} onClose={hideModal} creator={currentUser} /> }
-        <PostComment show={openModal} onClose={hideModal} creator={currentUser}  /> */}
+        <PostComment show={openModal} onClose={hideModal} creator={currentUser}  />
       </div>
         </PostContext.Provider>
   );
