@@ -37,10 +37,10 @@ function Homepage({ comments, currentUser, replies }) {
 
   return (
     <PostContext.Provider value={{comment, setComment, replys, setReplys}}>
-      <div>
-        <Modal show={showModal} > <LoadingSpinner /></Modal>
+      <div> Testing
+        {/* <Modal show={showModal} > <LoadingSpinner /></Modal>
         {!!comments && <CommentList show={openModal} onClose={hideModal} creator={currentUser} /> }
-        <PostComment show={openModal} onClose={hideModal} creator={currentUser}  />
+        <PostComment show={openModal} onClose={hideModal} creator={currentUser}  /> */}
       </div>
         </PostContext.Provider>
   );
@@ -53,15 +53,26 @@ export default Homepage;
 
 
 export async function getServerSideProps() {
-  await initMongoose();
-  const comments = await findAllComments();
-  const replies = await findAllReplies();
-  const creator = await getUser();
+  // await initMongoose();
+  // const comments = await findAllComments();
+  // const replies = await findAllReplies();
+  // const creator = await getUser();
   return {
     props: {
-      comments: JSON.parse(JSON.stringify(comments)),
-      replies: JSON.parse(JSON.stringify(replies)),
-      currentUser: JSON.parse(JSON.stringify(creator)),
-    },
+      comments: [],
+      replies: [],
+      currentUser: {
+        "image": { 
+          "png": "./images/avatars/image-juliusomo.png",
+          "webp": "./images/avatars/image-juliusomo.webp"
+        },
+        "username": "juliusomo"
+      },
+    }
+    // props: {
+    //   comments: JSON.parse(JSON.stringify(comments)),
+    //   replies: JSON.parse(JSON.stringify(replies)),
+    //   currentUser: JSON.parse(JSON.stringify(creator)),
+    // },
   };
 }
