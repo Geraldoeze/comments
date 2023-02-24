@@ -36,13 +36,14 @@ function Homepage({ comments, currentUser, replies }) {
   console.log("db", currentUser)
 
   return (
-    <PostContext.Provider value={{comment, setComment, replys, setReplys}}>
-      <div>
-        <Modal show={showModal} > <LoadingSpinner /></Modal>
-        {!!comments && <CommentList show={openModal} onClose={hideModal} creator={currentUser} /> }
-        <PostComment show={openModal} onClose={hideModal} creator={currentUser}  />
-      </div>
-        </PostContext.Provider>
+    <h3>balls</h3>
+    // <PostContext.Provider value={{comment, setComment, replys, setReplys}}>
+    //   <div>
+    //     <Modal show={showModal} > <LoadingSpinner /></Modal>
+    //     {!!comments && <CommentList show={openModal} onClose={hideModal} creator={currentUser} /> }
+    //     <PostComment show={openModal} onClose={hideModal} creator={currentUser}  />
+    //   </div>
+    //     </PostContext.Provider>
   );
 }
 
@@ -52,16 +53,16 @@ export default Homepage;
 
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   await initMongoose();
-  const comments = await findAllComments();
-  const replies = await findAllReplies();
-  const creator = await getUser();
+  // const comments = await findAllComments();
+  // const replies = await findAllReplies();
+  // const creator = await getUser();
   return {
-    props: {
-      comments: JSON.parse(JSON.stringify(comments)),
-      replies: JSON.parse(JSON.stringify(replies)),
-      currentUser: JSON.parse(JSON.stringify(creator)),
-    }
+    // props: {
+    //   comments: JSON.parse(JSON.stringify(comments)),
+    //   replies: JSON.parse(JSON.stringify(replies)),
+    //   currentUser: JSON.parse(JSON.stringify(creator)),
+    // }
   };
 }
