@@ -7,7 +7,7 @@ export async function findAllReplies() {
 }
 
 export async function handler(req, res) {
-  await initMongoose();
+  // await initMongoose();
   res.status(201).json({mess: 'Yonda'});
   // res.status(201).json(await findAllReplies());
   
