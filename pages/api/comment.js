@@ -1,4 +1,4 @@
-import { initMongoose } from "../../../lib/mongoose";
+import { initMongoose } from "../../lib/mongoose";
 
 export default function handler(req, res) {
     initMongoose();
