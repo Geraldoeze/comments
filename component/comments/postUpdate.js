@@ -1,6 +1,6 @@
 export const SendPostReplies = async (value) => {
   try {
-    const res = await fetch("/api/Replies/", {
+    const res = await fetch("/api/replies/", {
       method: "POST",
       body: JSON.stringify(value),
       headers: { "Content-Type": "application/json" },
@@ -15,7 +15,7 @@ export const SendPostReplies = async (value) => {
 
 export const SendUpdateReplies = async (value) => {
   try {
-    const res = await fetch("/api/Replies/", {
+    const res = await fetch("/api/replies/", {
       method: "PATCH",
       body: JSON.stringify(value),
       headers: { "Content-Type": "application/json" },
@@ -29,7 +29,7 @@ export const SendUpdateReplies = async (value) => {
 export const SendUpdateComments = async (value) => {
   // send comment
   try {
-    const res = await fetch("/api/Comment/", {
+    const res = await fetch("/api/comment/", {
       method: "PATCH",
       body: JSON.stringify(value),
       headers: { "Content-Type": "application/json" },

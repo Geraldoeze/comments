@@ -45,7 +45,7 @@ const PostComment = ({ creator }) => {
   
     if (value?.length >= 2) {
       await sendRequest(
-        "/api/Comments/",
+        "/api/comment/",
         "POST",
         JSON.stringify(commentBody)
       );

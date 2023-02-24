@@ -63,7 +63,7 @@ const CommentForm = ({
       const newUpdate = {...findOne[0], content: value.content, createdAt: value.createdAt}
       
       setComment((com) => {
-        const filtered = reply?.filter((del) => del._id !== newUpdate._id);
+        const filtered = replys?.filter((del) => del._id !== newUpdate._id);
         
         return [...filtered, value];
       });
