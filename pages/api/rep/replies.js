@@ -9,5 +9,5 @@ export async function findAllReplies() {
 export async function handler(req, res) {
   await initMongoose();
   
-  res.status(201).json(await findAllReplies());
+  res.status(201).json({mess: 'baller'});
 }
