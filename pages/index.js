@@ -1,23 +1,23 @@
 import { createContext, useContext } from "react";
 import React, { useState, useEffect } from "react";
-import { PostContext } from "../hook/context-hook";
+// import { PostContext } from "../hook/context-hook";
 // our-main-domain/
-import CommentList from "../component/comments/CommentsList";
+// import CommentList from "../component/comments/CommentsList";
 import "../styles/home.module.css";
 import "@fontsource/rubik";
 
-import LoadingSpinner from '../component/UI/LoadingSpinner/LoadingSpinner'
+// import LoadingSpinner from '../component/UI/LoadingSpinner/LoadingSpinner'
 
-import { initMongoose } from "../lib/mongoose";
-import { findAllComments } from "./api/Comment";
-import { findAllReplies } from "./api/Replies";
-import { getUser } from "./api/user";
-import PostComment from "../component/comments/postComment";
-import Modal from "../component/UI/Modal/Modal";
+// import { initMongoose } from "../lib/mongoose";
+// import { findAllComments } from "./api/comment";
+// import { findAllReplies } from "./api/replies";
+// import { getUser } from "./api/user";
+// import PostComment from "../component/comments/postComment";
+// import Modal from "../component/UI/Modal/Modal";
 
 
 
-function Homepage({ comments, currentUser, replies }) {
+function Homepage() {
 
   
   const [verify, setVerify] = useState(true);
@@ -29,11 +29,11 @@ function Homepage({ comments, currentUser, replies }) {
   const openModal = () => setShowModal(true);
 
 
-  const [comment, setComment] = useState(comments);
-  const [replys, setReplys] = useState(replies);
+  // const [comment, setComment] = useState(comments);
+  // const [replys, setReplys] = useState(replies);
 
   
-  console.log("db", currentUser)
+  // console.log("db", currentUser)
 
   return (
     <h3>balls</h3>
@@ -54,7 +54,7 @@ export default Homepage;
 
 
 export async function getServerSideProps() {
-  await initMongoose();
+  // await initMongoose();
   // const comments = await findAllComments();
   // const replies = await findAllReplies();
   // const creator = await getUser();
