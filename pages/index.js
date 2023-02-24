@@ -10,8 +10,8 @@ import "@fontsource/rubik";
 // import LoadingSpinner from '../component/UI/LoadingSpinner/LoadingSpinner'
 
 import { initMongoose } from "../lib/mongoose";
-// import { findAllComments } from "./api/comment";
-// import { findAllReplies } from "./api/replies";
+import { findAllComments } from "./api/com/comment";
+import { findAllReplies } from "./api/rep/replies";
 import { getUser } from "./api/user";
 // import PostComment from "../component/comments/postComment";
 // import Modal from "../component/UI/Modal/Modal";
@@ -56,19 +56,15 @@ export default Homepage;
 
 export async function getServerSideProps() {
   initMongoose();
-  // const comments = await findAllComments();
-  // const replies = await findAllReplies();
+  const comments = await findAllComments();
+  const replies = await findAllReplies();
   const creator = await getUser();
-  const sam = creator
+  
   return {
     props: {
-      comments: 'cummitee',
-      user:  JSON.parse(JSON.stringify(sam))
+      comments: JSON.parse(JSON.stringify(comments)),
+      replies: JSON.parse(JSON.stringify(replies)),
+      currentUser: JSON.parse(JSON.stringify(creator)),
     }
-    // props: {
-    //   comments: JSON.parse(JSON.stringify(comments)),
-    //   replies: JSON.parse(JSON.stringify(replies)),
-    //   currentUser: JSON.parse(JSON.stringify(creator)),
-    // }
   };
 }
