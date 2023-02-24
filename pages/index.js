@@ -8,7 +8,7 @@ import "@fontsource/rubik";
 
 // import LoadingSpinner from '../component/UI/LoadingSpinner/LoadingSpinner'
 
-// import { initMongoose } from "../lib/mongoose";
+import { initMongoose } from "../lib/mongoose";
 // import { findAllComments } from "./api/comment";
 // import { findAllReplies } from "./api/replies";
 // import { getUser } from "./api/user";
@@ -17,7 +17,7 @@ import "@fontsource/rubik";
 
 
 
-function Homepage() {
+function Homepage(props) {
 
   
   const [verify, setVerify] = useState(true);
@@ -33,7 +33,7 @@ function Homepage() {
   // const [replys, setReplys] = useState(replies);
 
   
-  // console.log("db", currentUser)
+  console.log(props)
 
   return (
     <h3>balls</h3>
@@ -54,11 +54,14 @@ export default Homepage;
 
 
 export async function getServerSideProps() {
-  // await initMongoose();
+  initMongoose();
   // const comments = await findAllComments();
   // const replies = await findAllReplies();
   // const creator = await getUser();
   return {
+    props: {
+      comments: 'cummitee'
+    }
     // props: {
     //   comments: JSON.parse(JSON.stringify(comments)),
     //   replies: JSON.parse(JSON.stringify(replies)),
