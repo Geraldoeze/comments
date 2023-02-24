@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 // import { PostContext } from "../hook/context-hook";
 // our-main-domain/
 // import CommentList from "../component/comments/CommentsList";
@@ -11,7 +12,7 @@ import "@fontsource/rubik";
 import { initMongoose } from "../lib/mongoose";
 // import { findAllComments } from "./api/comment";
 // import { findAllReplies } from "./api/replies";
-// import { getUser } from "./api/user";
+import { getUser } from "./api/user";
 // import PostComment from "../component/comments/postComment";
 // import Modal from "../component/UI/Modal/Modal";
 
@@ -57,10 +58,12 @@ export async function getServerSideProps() {
   initMongoose();
   // const comments = await findAllComments();
   // const replies = await findAllReplies();
-  // const creator = await getUser();
+  const creator = await getUser();
+  const sam = creator
   return {
     props: {
-      comments: 'cummitee'
+      comments: 'cummitee',
+      user:  JSON.parse(JSON.stringify(sam))
     }
     // props: {
     //   comments: JSON.parse(JSON.stringify(comments)),

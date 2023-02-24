@@ -5,6 +5,7 @@ export async function getUser() {
 }
 
 export async function handler(req, res) {
-  await initMongoose();
-  res.status(201).json(await getUser());
+  initMongoose();
+    // const user = await getUser()
+   res.json({user: ''})
 }
