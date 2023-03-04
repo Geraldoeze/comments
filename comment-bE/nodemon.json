@@ -1,7 +1,5 @@
 {
     "env": {
-        "MONGODB_URI":"mongodb://127.0.0.1:27017/commentData",
-        "MONGODB_URLINK": "mongodb+srv://geraldoeze:dzsqH2N578ghKxC0@cluster01.zshtev5.mongodb.net/commentData?retryWrites=true&w=majority",
         "MONGODB_NAME": "geraldoeze",
         "MONGODB_DB" :" commentData",
         "MONGODB_PASS":"dzsqH2N578ghKxC0"

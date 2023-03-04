@@ -11,7 +11,7 @@ const repliesRoutes = require('./routes/replies');
 const { config } = require('dotenv');
 config();
 
-// const MONGODB_URI = 'mongodb://127.0.0.1:27017/t-plus';
+
  
 const MONGODB_URL = `mongodb+srv://${process.env.MONGODB_NAME}:${process.env.MONGODB_PASS}@cluster01.zshtev5.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`
 // const MONGODB_URL = 'mongodb://127.0.0.1:27017/commentData'
