@@ -7,7 +7,7 @@ const Heading = ({ currentUser, create, headData }) => {
   const imageSrc = headData.image.png;
   // This removes the dot ./ so that next can access the image from public folder
   const imageContent = imageSrc.slice(1, imageSrc.length);
-  const TimeStamp = createdAT(create);
+  // const TimeStamp = createdAT(create);
   
   return (
     <div className={classes.heading}>
@@ -16,7 +16,7 @@ const Heading = ({ currentUser, create, headData }) => {
       {currentUser[0].username === headData.username && (
         <span className={classes.creator_span}>you</span>
       )}
-      <p className={classes.heading_time}>{TimeStamp}</p>
+      {/* <p className={classes.heading_time}>{TimeStamp}</p> */}
     </div>
   );
 };

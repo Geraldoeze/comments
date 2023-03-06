@@ -12,8 +12,8 @@ const { config } = require('dotenv');
 config();
 
 
- 
-const MONGODB_URL = `mongodb+srv://${process.env.MONGODB_NAME}:${process.env.MONGODB_PASS}@cluster01.zshtev5.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`
+const MONGODB_URL = `mongodb+srv://geraldoeze:dzsqH2N578ghKxC0@cluster01.zshtev5.mongodb.net/commentData?retryWrites=true&w=majority`
+// const MONGODB_URL = `mongodb+srv://${process.env.MONGODB_NAME}:${process.env.MONGODB_PASS}@cluster01.zshtev5.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`
 // const MONGODB_URL = 'mongodb://127.0.0.1:27017/commentData'
 
 app.use(bodyParser.json());
